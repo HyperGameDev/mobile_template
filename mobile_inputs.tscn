@@ -5,6 +5,7 @@
 
 [node name="Mobile_Inputs" type="CanvasLayer"]
 script = ExtResource("1_1qr43")
+joystick_visibility = 2
 
 [node name="Touch_Joystick" parent="." instance=ExtResource("2_1qr43")]
 unique_name_in_owner = true

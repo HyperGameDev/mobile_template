@@ -7,7 +7,7 @@ enum joystick_types {
 	FLOATING_BOTTOM_LEFT, ##A single joystick appears wherever the player touches if that touch is in the bottom-left side of the screen.
 	FLOATING_BOTTOM_RIGHT, ##A single joystick appears wherever the player touches if that touch is in the bottom-right side of the screen.
 	FLOATING_DYNAMIC, ##A single joystick follows the player's touch constantly instead of staying put at the initial touch position.
-	FIXED_CUSTOM_SINGLE, ##A single joystick is fixed to a custom position on the screen. This joystick will no longer float, but only respond if touched at its specific position.
+	#FIXED_CUSTOM_SINGLE, ##A single joystick is fixed to a custom position on the screen. This joystick will no longer float, but only respond if touched at its specific position.
 	#TWIN_FLOATING, ##A left joystick appears whenever the player touches anywhere on the left side of the screen; a right joystick appears whenever the player touches anywhere on the right side of the screen.
 	#TWIN_FLOATING_BOTTOM, ##Same as TWIN_FLOATING except only applies to the bottom half of the screen.
 	#TWIN_FIXED ##A left and right joystick are fixed to the screen and will not activate unless directly pressed.
@@ -34,10 +34,11 @@ func setup_joystick() -> void:
 			%Touch_Joystick.visibility = %Touch_Joystick.visibilities.TOUCH
 		joystick_visibilities.ALWAYS:
 			%Touch_Joystick.visibility = %Touch_Joystick.visibilities.ALWAYS
-			%Touch_Joystick.set_visibility(false)
 		joystick_visibilities.NEVER:
 			%Touch_Joystick.visibility = %Touch_Joystick.visibilities.NEVER
-			%Touch_Joystick.set_visibility(false)
+	
+	%Touch_Joystick.set_visibility(false)
+			
 	match joystick_type:
 		joystick_types.FLOATING:
 			%Touch_Joystick.pos_type = %Touch_Joystick.pos_types.FLOATING
@@ -47,11 +48,17 @@ func setup_joystick() -> void:
 			%Touch_Joystick.float_type = %Touch_Joystick.float_types.BOTTOM
 		joystick_types.FLOATING_BOTTOM_LEFT:
 			%Touch_Joystick.pos_type = %Touch_Joystick.pos_types.FLOATING
-			%Touch_Joystick.fixed_type = %Touch_Joystick.fixed_types.LEFT
+			%Touch_Joystick.float_type = %Touch_Joystick.float_types.BOTTOM_LEFT
 		joystick_types.FLOATING_BOTTOM_RIGHT:
 			%Touch_Joystick.pos_type = %Touch_Joystick.pos_types.FLOATING
-			%Touch_Joystick.fixed_type = %Touch_Joystick.fixed_types.RIGHT
-		joystick_types.FIXED_CUSTOM_SINGLE:
-			%Touch_Joystick.pos_type = %Touch_Joystick.pos_types.FIXED
-			%Touch_Joystick.fixed_type = %Touch_Joystick.fixed_types.CUSTOM
+			%Touch_Joystick.float_type = %Touch_Joystick.float_types.BOTTOM_RIGHT
+		joystick_types.FLOATING_DYNAMIC:
+			%Touch_Joystick.pos_type = %Touch_Joystick.pos_types.FLOATING
+			%Touch_Joystick.base_mode = %Touch_Joystick.base_modes.DYNAMIC
+		
+		#joystick_types.FIXED_CUSTOM_SINGLE:
+			#%Touch_Joystick.pos_type = %Touch_Joystick.pos_types.FIXED
+			#%Touch_Joystick.fixed_type = %Touch_Joystick.fixed_types.CUSTOM
+		
+	%Touch_Joystick.center_joystick_to_screen()
 			

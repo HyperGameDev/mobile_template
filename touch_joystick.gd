@@ -17,9 +17,6 @@ enum base_modes {STATIC,DYNAMIC}
 
 var radius = 35
 
-func _ready():
-	center_joystick_to_screen()
-
 func _input(event):
 	#print(get_direction())
 	if event is InputEventScreenTouch:
@@ -31,18 +28,23 @@ func _input(event):
 			set_visibility(false)
 
 	elif event is InputEventScreenDrag:
+		if event.pressure:
+			set_visibility(true)
+		else:
+			set_visibility(false)
 		var base_center = %Base.position + %Base.texture.get_size() / 2
 		
 		match base_mode:
 			base_modes.STATIC:
-				center_tracker_to_base(event.position)
+				if touch_is_in_region(event.position):
+					center_tracker_to_base(event.position)
 				
 			base_modes.DYNAMIC:
 				var tracker_size: Vector2 = %Tracker.texture.get_size()
 				%Tracker.global_position = event.position - tracker_size / 2
 				
 				var tracker_center: Vector2 = %Tracker.global_position + tracker_size / 2
-				var distance: Vector2 = (tracker_center - base_center).length()
+				var distance: float = (tracker_center - base_center).length()
 				
 				if distance > radius:
 					var direction: Vector2 = (tracker_center - base_center).normalized()
@@ -71,24 +73,31 @@ func set_visibility(make_visible:bool) -> void:
 				%Base.visible = true
 			visibilities.NEVER:
 				%Base.visible = false
-			
-	
-func check_joystick_type(event) -> void:
+				
+func touch_is_in_region(touch_pos) -> bool:
 	var screen_size: Vector2 = get_viewport().get_visible_rect().size
 	match pos_type:
 		pos_types.FLOATING:
 			match float_type:
 				float_types.FULL:
-					center_tracker_to_touch(event.position)
+					return true
 				float_types.BOTTOM:
-					if event.position.y > screen_size.y /2:
-						center_tracker_to_touch(event.position)
+					return touch_pos.y > screen_size.y /2
 				float_types.BOTTOM_LEFT:
-					if event.position.y > screen_size.y /2 and event.position.x < screen_size.x /2:
-						center_tracker_to_touch(event.position)
+					return touch_pos.y > screen_size.y /2 and touch_pos.x < screen_size.x /2
 				float_types.BOTTOM_RIGHT:
-					if event.position.y > screen_size.y /2 and event.position.x > screen_size.x /2:
-						center_tracker_to_touch(event.position)
+					return touch_pos.y > screen_size.y /2 and touch_pos.x > screen_size.x /2
+				_:
+					return false
+		_:
+			return false
+
+func check_joystick_type(event) -> void:
+	var screen_size: Vector2 = get_viewport().get_visible_rect().size
+	match pos_type:
+		pos_types.FLOATING:
+			if touch_is_in_region(event.position):
+				center_tracker_and_base_to_touch(event.position)
 					
 		pos_types.FIXED:
 			match fixed_type:
@@ -97,7 +106,7 @@ func check_joystick_type(event) -> void:
 				fixed_types.TWIN:
 					pass
 
-func center_tracker_to_touch(touch_pos: Vector2):
+func center_tracker_and_base_to_touch(touch_pos: Vector2):
 	var base_size: Vector2 = %Base.texture.get_size()
 	var tracker_size: Vector2 = %Tracker.texture.get_size()
 	%Base.position = touch_pos - base_size / 2
@@ -109,10 +118,42 @@ func center_tracker_to_base(touch_pos: Vector2):
 	var tracker_size: Vector2 = %Tracker.texture.get_size()
 	%Tracker.global_position = base_center + direction - tracker_size / 2
 	
-func center_joystick_to_screen():
+func center_joystick_to_screen() -> void:
 	var screen_center: Vector2 = get_viewport().get_visible_rect().size / 2
 	var base_size: Vector2 = %Base.texture.get_size()
 	var tracker_size: Vector2 = %Tracker.texture.get_size()
 	
-	%Base.position = screen_center - base_size / 2
-	%Tracker.global_position = screen_center - tracker_size / 2
+	var screen_size: Vector2 = get_viewport().get_visible_rect().size
+	
+	match float_type:
+		float_types.FULL:
+			var center = screen_size / 2
+			%Base.position = center - base_size / 2
+			%Tracker.global_position = center - tracker_size / 2
+			
+		float_types.BOTTOM:
+			var bottom_center = Vector2(
+				screen_size.x / 2,
+				screen_size.y - (screen_size.y / 4)  # Center of bottom half
+			)
+			%Base.position = bottom_center - base_size / 2
+			%Tracker.global_position = bottom_center - tracker_size / 2
+			
+		float_types.BOTTOM_LEFT:
+			var bottom_left_center = Vector2(
+				screen_size.x / 4,  # Center of left half (screen_size.x/4)
+				screen_size.y * 0.75  # Center of bottom half
+			)
+			%Base.position = bottom_left_center - base_size / 2
+			%Tracker.global_position = bottom_left_center - tracker_size / 2
+			
+		float_types.BOTTOM_RIGHT:
+			var bottom_right_center = Vector2(
+				screen_size.x * 0.75,  # Center of right half (screen_size.x * 3/4)
+				screen_size.y * 0.75  # Center of bottom half
+			)
+			%Base.position = bottom_right_center - base_size / 2
+			%Tracker.global_position = bottom_right_center - tracker_size / 2
+			
+			
+	

@@ -1,0 +1,410 @@
+[gd_scene load_steps=13 format=3 uid="uid://dgsem1bka8ixa"]
+
+[ext_resource type="Script" uid="uid://b6flgiagvvaer" path="res://ui.gd" id="1_fyqef"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xb563"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fyqef"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="Gradient" id="Gradient_fyqef"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m6e0p"]
+gradient = SubResource("Gradient_fyqef")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_27fn8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5ude"]
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xb563"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6e0p"]
+bg_color = Color(0.17, 0.368, 0.5, 1)
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_27fn8"]
+bg_color = Color(0.17, 0.368, 0.5, 1)
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nltto"]
+bg_color = Color(0.17, 0.368, 0.5, 1)
+corner_radius_top_left = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibotj"]
+bg_color = Color(0.17, 0.368, 0.5, 1)
+corner_radius_top_left = 100
+corner_radius_bottom_left = 100
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_fyqef")
+
+[node name="Bars" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Vertical_bars" type="MarginContainer" parent="Bars"]
+layout_mode = 2
+
+[node name="Top_Bar" type="HSplitContainer" parent="Bars/Vertical_bars"]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/split_bar_background = SubResource("StyleBoxEmpty_xb563")
+dragging_enabled = false
+drag_area_highlight_in_editor = true
+
+[node name="Top_Bar_1" type="MarginContainer" parent="Bars/Vertical_bars/Top_Bar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="Bars/Vertical_bars/Top_Bar/Top_Bar_1"]
+custom_minimum_size = Vector2(534, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fyqef")
+
+[node name="Label" type="Label" parent="Bars/Vertical_bars/Top_Bar/Top_Bar_1"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "Top 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Buttons" type="MarginContainer" parent="Bars/Vertical_bars/Top_Bar/Top_Bar_1"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 45
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 45
+theme_override_constants/margin_bottom = 10
+
+[node name="HBox_Buttons" type="HBoxContainer" parent="Bars/Vertical_bars/Top_Bar/Top_Bar_1/Buttons"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Bars/Vertical_bars/Top_Bar/Top_Bar_1/Buttons/HBox_Buttons"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Bars/Vertical_bars/Top_Bar/Top_Bar_1/Buttons/HBox_Buttons/MarginContainer"]
+texture_normal = SubResource("GradientTexture2D_m6e0p")
+shape = SubResource("RectangleShape2D_27fn8")
+
+[node name="Button" type="Button" parent="Bars/Vertical_bars/Top_Bar/Top_Bar_1/Buttons/HBox_Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_n5ude")
+text = "
+Button
+
+"
+
+[node name="Button2" type="Button" parent="Bars/Vertical_bars/Top_Bar/Top_Bar_1/Buttons/HBox_Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_n5ude")
+text = "
+Button
+
+"
+
+[node name="Button3" type="Button" parent="Bars/Vertical_bars/Top_Bar/Top_Bar_1/Buttons/HBox_Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_n5ude")
+text = "
+Button
+
+"
+
+[node name="Button4" type="Button" parent="Bars/Vertical_bars/Top_Bar/Top_Bar_1/Buttons/HBox_Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_n5ude")
+text = "
+Button
+
+"
+
+[node name="Top_Bar_2" type="MarginContainer" parent="Bars/Vertical_bars/Top_Bar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="Bars/Vertical_bars/Top_Bar/Top_Bar_2"]
+custom_minimum_size = Vector2(534, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fyqef")
+
+[node name="Label" type="Label" parent="Bars/Vertical_bars/Top_Bar/Top_Bar_2"]
+visible = false
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "Top 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Buttons" type="MarginContainer" parent="Bars/Vertical_bars/Top_Bar/Top_Bar_2"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 45
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 45
+theme_override_constants/margin_bottom = 10
+
+[node name="HBox_Buttons" type="HBoxContainer" parent="Bars/Vertical_bars/Top_Bar/Top_Bar_2/Buttons"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Bars/Vertical_bars/Top_Bar/Top_Bar_2/Buttons/HBox_Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_n5ude")
+text = "Button"
+
+[node name="Button2" type="Button" parent="Bars/Vertical_bars/Top_Bar/Top_Bar_2/Buttons/HBox_Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_n5ude")
+text = "Button"
+
+[node name="Button3" type="Button" parent="Bars/Vertical_bars/Top_Bar/Top_Bar_2/Buttons/HBox_Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_n5ude")
+text = "Button"
+
+[node name="Button4" type="Button" parent="Bars/Vertical_bars/Top_Bar/Top_Bar_2/Buttons/HBox_Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_n5ude")
+text = "Button"
+
+[node name="Bottom_Bar" type="HSplitContainer" parent="Bars/Vertical_bars"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/split_bar_background = SubResource("StyleBoxEmpty_xb563")
+dragging_enabled = false
+drag_area_highlight_in_editor = true
+
+[node name="Bottom_Bar_1" type="MarginContainer" parent="Bars/Vertical_bars/Bottom_Bar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="Bars/Vertical_bars/Bottom_Bar/Bottom_Bar_1"]
+custom_minimum_size = Vector2(534, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xb563")
+
+[node name="Label" type="Label" parent="Bars/Vertical_bars/Bottom_Bar/Bottom_Bar_1"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "Bottom 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Bottom_Bar_2" type="MarginContainer" parent="Bars/Vertical_bars/Bottom_Bar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="Bars/Vertical_bars/Bottom_Bar/Bottom_Bar_2"]
+custom_minimum_size = Vector2(534, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xb563")
+
+[node name="Label" type="Label" parent="Bars/Vertical_bars/Bottom_Bar/Bottom_Bar_2"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "Bottom 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Horizontal_Bars" type="MarginContainer" parent="Bars"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="Left_Bar" type="VSplitContainer" parent="Bars/Horizontal_Bars"]
+layout_mode = 2
+mouse_filter = 2
+dragging_enabled = false
+drag_area_highlight_in_editor = true
+
+[node name="Left_Bar_1" type="MarginContainer" parent="Bars/Horizontal_Bars/Left_Bar"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="Bars/Horizontal_Bars/Left_Bar/Left_Bar_1"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m6e0p")
+
+[node name="Label" type="Label" parent="Bars/Horizontal_Bars/Left_Bar/Left_Bar_1"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "L1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Buttons" type="MarginContainer" parent="Bars/Horizontal_Bars/Left_Bar/Left_Bar_1"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 45
+theme_override_constants/margin_bottom = 45
+
+[node name="VBox_Buttons" type="VBoxContainer" parent="Bars/Horizontal_Bars/Left_Bar/Left_Bar_1/Buttons"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Bars/Horizontal_Bars/Left_Bar/Left_Bar_1/Buttons/VBox_Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/outline_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_n5ude")
+text = "Button"
+
+[node name="Button2" type="Button" parent="Bars/Horizontal_Bars/Left_Bar/Left_Bar_1/Buttons/VBox_Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/outline_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_n5ude")
+text = "Button"
+
+[node name="Button3" type="Button" parent="Bars/Horizontal_Bars/Left_Bar/Left_Bar_1/Buttons/VBox_Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/outline_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_n5ude")
+text = "Button"
+
+[node name="Button4" type="Button" parent="Bars/Horizontal_Bars/Left_Bar/Left_Bar_1/Buttons/VBox_Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/outline_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_n5ude")
+text = "Button"
+
+[node name="Left_Bar_2" type="MarginContainer" parent="Bars/Horizontal_Bars/Left_Bar"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="Bars/Horizontal_Bars/Left_Bar/Left_Bar_2"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_27fn8")
+
+[node name="Label" type="Label" parent="Bars/Horizontal_Bars/Left_Bar/Left_Bar_2"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "L2"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Right_Bar" type="VSplitContainer" parent="Bars/Horizontal_Bars"]
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 2
+dragging_enabled = false
+drag_area_highlight_in_editor = true
+
+[node name="Right_Bar_1" type="MarginContainer" parent="Bars/Horizontal_Bars/Right_Bar"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="Bars/Horizontal_Bars/Right_Bar/Right_Bar_1"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nltto")
+
+[node name="Label" type="Label" parent="Bars/Horizontal_Bars/Right_Bar/Right_Bar_1"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "R1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Right_Bar_2" type="MarginContainer" parent="Bars/Horizontal_Bars/Right_Bar"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="Bars/Horizontal_Bars/Right_Bar/Right_Bar_2"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ibotj")
+
+[node name="Label" type="Label" parent="Bars/Horizontal_Bars/Right_Bar/Right_Bar_2"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "R2"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

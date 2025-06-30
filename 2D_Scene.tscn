@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8wax5wkc4t06"]
+
+[ext_resource type="PackedScene" uid="uid://dgsem1bka8ixa" path="res://ui.tscn" id="1_qiypj"]
+[ext_resource type="PackedScene" uid="uid://c27fcy41rk11c" path="res://mobile_inputs.tscn" id="2_aeh7r"]
+
+[sub_resource type="Gradient" id="Gradient_aeh7r"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0.285786, 0.603636, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bkuh8"]
+gradient = SubResource("Gradient_aeh7r")
+
+[sub_resource type="Gradient" id="Gradient_qiypj"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aeh7r"]
+gradient = SubResource("Gradient_qiypj")
+width = 300
+height = 300
+
+[node name="Node2D" type="Node2D"]
+
+[node name="UI" parent="." instance=ExtResource("1_qiypj")]
+offset = Vector2(-540, -540)
+transform = Transform2D(1, 0, 0, 1, -540, -540)
+
+[node name="Sky" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1510.0
+offset_top = -1306.0
+offset_right = 1510.0
+offset_bottom = 1306.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_bkuh8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -540.0
+offset_right = 540.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_aeh7r")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Mobile_Inputs" parent="." instance=ExtResource("2_aeh7r")]

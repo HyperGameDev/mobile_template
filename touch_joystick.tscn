@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://ndeewo8vs1i"]
+
+[ext_resource type="Script" uid="uid://djwghc1islotc" path="res://touch_joystick.gd" id="1_u40xi"]
+
+[sub_resource type="Gradient" id="Gradient_hvquj"]
+offsets = PackedFloat32Array(0.0134529, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aitlf"]
+gradient = SubResource("Gradient_hvquj")
+width = 100
+height = 100
+
+[sub_resource type="Gradient" id="Gradient_tklhb"]
+offsets = PackedFloat32Array(0.0179372, 1)
+colors = PackedColorArray(0.615686, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wwums"]
+gradient = SubResource("Gradient_tklhb")
+
+[node name="Touch_Joystick_floating" type="CanvasLayer"]
+script = ExtResource("1_u40xi")
+
+[node name="Base" type="TextureRect" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_aitlf")
+
+[node name="Tracker" type="TextureRect" parent="Base"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_wwums")

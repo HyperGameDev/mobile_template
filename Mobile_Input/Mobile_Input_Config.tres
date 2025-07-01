@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Mobile_Input_Config" load_steps=2 format=3 uid="uid://b5i4fwanajx0h"]
+
+[ext_resource type="Script" uid="uid://cfajmbvvdaqhx" path="res://Mobile_Input/Mobile_Input_Config.gd" id="1_qken3"]
+
+[resource]
+script = ExtResource("1_qken3")
+joystick_type = 0
+joystick_visibility = 0
+invert_y_axis = false
+movement_in_3D = true
+metadata/_custom_type_script = "uid://cfajmbvvdaqhx"

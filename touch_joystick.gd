@@ -18,20 +18,24 @@ enum base_modes {STATIC,DYNAMIC}
 var radius = 35
 
 func _input(event):
-	#print(get_direction())
+	MobileInputs.joystick_single_output.emit(get_direction())
 	if event is InputEventScreenTouch:
 		if event.is_pressed():
 			check_joystick_type(event)
-			set_visibility(true)
+			if touch_is_in_region(event.position):
+				set_visibility(true)
 		else:
 			center_joystick_to_screen()
-			set_visibility(false)
+			if touch_is_in_region(event.position):
+				set_visibility(false)
 
 	elif event is InputEventScreenDrag:
 		if event.pressure:
-			set_visibility(true)
+			if touch_is_in_region(event.position):
+				set_visibility(true)
 		else:
-			set_visibility(false)
+			if touch_is_in_region(event.position):
+				set_visibility(false)
 		var base_center = %Base.position + %Base.texture.get_size() / 2
 		
 		match base_mode:
@@ -53,7 +57,14 @@ func _input(event):
 func get_direction() -> Vector2:
 	var base_center: Vector2 = %Base.position + %Base.texture.get_size() / 2
 	var tracker_center: Vector2 = %Tracker.global_position + %Tracker.texture.get_size() / 2
-	return (tracker_center - base_center).normalized()
+	var direction: Vector2 = (tracker_center - base_center).normalized()
+	if MobileInputs.mobile_input_config.invert_y_axis:
+		if not MobileInputs.mobile_input_config.movement_in_3D:
+			direction.y *= -1
+	else:
+		if  MobileInputs.mobile_input_config.movement_in_3D:
+			direction.y *= -1
+	return direction
 	
 func set_visibility(make_visible:bool) -> void:
 	if make_visible:
